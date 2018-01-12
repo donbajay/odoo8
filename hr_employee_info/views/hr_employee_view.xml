@@ -1,0 +1,38 @@
+<openerp>
+	<data>
+		<record id="hr_employee_info_view_form" model="ir.ui.view">
+            <field name="name">hr.employee.info.view.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//group[@string='Position']" position="after">
+					<group string="Employee Info">
+						<field name="jabfung_ids"/>
+						<field name="jabstruktur_ids"/>
+						<field name="jenispeg_ids"/>
+						<field name="golpangkat_ids"/>
+						<field name="agama_ids"/>
+					</group>
+				</xpath>
+            </field>
+        </record>
+
+		<record id="hr_employee_identification_view_form" model="ir.ui.view">
+            <field name="name">hr.employee.info.view.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//group[@string='Active']" position="before">
+					<group string="Identification">
+						<field name="nip"/>
+						<field name="gelardepan"/>
+						<field name="gelarbelakang"/>
+						<field name="nup"/>
+						<field name="nidk"/>
+						<field name="nidn"/>
+					</group>
+				</xpath>
+            </field>
+        </record>
+	</data>
+</openerp>

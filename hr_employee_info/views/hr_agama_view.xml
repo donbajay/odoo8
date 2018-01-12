@@ -1,0 +1,40 @@
+<openerp>
+  <data>
+    <!-- agama tree-->
+    <record model="ir.ui.view" id="view_agama_tree">
+        <field name="name">hr.agama.tree</field>
+        <field name="model">hr.agama</field>
+        <field name="arch" type="xml">
+            <tree string="Agama">
+                <field name="agama" string="Agama"/>
+            </tree>
+        </field>
+    </record>
+     <!-- agama form-->
+    <record model="ir.ui.view" id="view_agama_form">
+        <field name="name">hr.agama.form</field>
+        <field name="model">hr.agama</field>
+        <field name="arch" type="xml">
+            <form string="Agama">
+                <sheet>
+                    <group name="main">
+                        <field name="agama"/>
+                    </group>
+                </sheet>
+            </form>
+      </field>
+    </record>
+    <!-- Menu -->
+    <record model="ir.actions.act_window" id="open_view_agama_form">
+        <field name="name">Agama</field>
+        <field name="res_model">hr.agama</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Agama"
+              parent="menu_employee_info"
+              id="menu_open_view_agama_form"
+              action="open_view_agama_form"/>
+
+  </data>
+</openerp>

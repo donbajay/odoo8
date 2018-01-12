@@ -1,0 +1,40 @@
+<openerp>
+  <data>
+    <!-- jabfung tree-->
+    <record model="ir.ui.view" id="view_jabfung_tree">
+        <field name="name">hr.jabfung.tree</field>
+        <field name="model">hr.jabfung</field>
+        <field name="arch" type="xml">
+            <tree string="Jabatan Fungsional">
+                <field name="jabfung" string="Jabatan Fungsional"/>
+            </tree>
+        </field>
+    </record>
+     <!-- jabfung form-->
+    <record model="ir.ui.view" id="view_jabfung_form">
+        <field name="name">hr.jabfung.form</field>
+        <field name="model">hr.jabfung</field>
+        <field name="arch" type="xml">
+            <form string="Jabatan Fungsional">
+                <sheet>
+                    <group name="main">
+                        <field name="jabfung"/>
+                    </group>
+                </sheet>
+            </form>
+      </field>
+    </record>
+    <!-- Menu -->
+    <record model="ir.actions.act_window" id="open_view_jabfung_form">
+        <field name="name">Jabatan Fungsional</field>
+        <field name="res_model">hr.jabfung</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Jabatan Fungsional"
+              parent="menu_employee_info"
+              id="menu_open_view_jabfung_form"
+              action="open_view_jabfung_form"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,40 @@
+<openerp>
+  <data>
+    <!-- eselon tree-->
+    <record model="ir.ui.view" id="view_eselon_tree">
+        <field name="name">hr.eselon.tree</field>
+        <field name="model">hr.eselon</field>
+        <field name="arch" type="xml">
+            <tree string="Eselon">
+                <field name="eselon" string="Eselon"/>
+            </tree>
+        </field>
+    </record>
+     <!-- eselon form-->
+    <record model="ir.ui.view" id="view_eselon_form">
+        <field name="name">hr.eselon.form</field>
+        <field name="model">hr.eselon</field>
+        <field name="arch" type="xml">
+            <form string="Eselon">
+                <sheet>
+                    <group name="main">
+                        <field name="eselon"/>
+                    </group>
+                </sheet>
+            </form>
+      </field>
+    </record>
+    <!-- Menu -->
+    <record model="ir.actions.act_window" id="open_view_eselon_form">
+        <field name="name">Eselon</field>
+        <field name="res_model">hr.eselon</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Eselon"
+              parent="menu_employee_info"
+              id="menu_open_view_eselon_form"
+              action="open_view_eselon_form"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,46 @@
+<openerp>
+  <data>
+    <!-- pangkat tree-->
+    <record model="ir.ui.view" id="view_pangkat_tree">
+        <field name="name">hr.pangkat.tree</field>
+        <field name="model">hr.pangkat</field>
+        <field name="arch" type="xml">
+            <tree string="Pangkat">
+                <field name="pangkat" string="Jabatan Struktural"/>
+                <field name="jabfung_ids" string="Jabatan Fungsional"/>
+                <field name="ruang" string="Struktur"/>
+				<field name="kredit" string="Angka Kredit"/>
+            </tree>
+        </field>
+    </record>
+     <!-- pangkat form-->
+    <record model="ir.ui.view" id="view_pangkat_form">
+        <field name="name">hr.pangkat.form</field>
+        <field name="model">hr.pangkat</field>
+        <field name="arch" type="xml">
+            <form string="Pangkat">
+                <sheet>
+                    <group name="main">
+                        <field name="pangkat"/>
+						<field name="jabfung_ids"/>
+						<field name="ruang"/>
+						<field name="kredit"/>
+                    </group>
+                </sheet>
+            </form>
+      </field>
+    </record>
+    <!-- Menu -->
+    <record model="ir.actions.act_window" id="open_view_pangkat_form">
+        <field name="name">Pangkat</field>
+        <field name="res_model">hr.pangkat</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Pangkat"
+              parent="menu_employee_info"
+              id="menu_open_view_pangkat_form"
+              action="open_view_pangkat_form"/>
+
+  </data>
+</openerp>

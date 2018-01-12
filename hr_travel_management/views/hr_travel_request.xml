@@ -1,0 +1,154 @@
+<openerp>
+  <data>
+	<menuitem id="menu_travel_request" name="Employee Travel Management" sequence="3" parent="hr.menu_hr_root"/>
+	<record id="view_travel_advanced_tree" model="ir.ui.view">
+		<field name="name">hr.travel.advanced.tree</field>
+		<field name="model">hr.travel.advanced</field>
+		<field name="arch" type="xml">
+			<tree string="Advanced Lines">
+				<field name="sequence" invisible="1"/>
+				<field name="date_value"/>
+				<field name="name"/>
+				<field name="unit_amount"/>
+				<field name="unit_quantity"/>
+				<field name="total_amount" sum="Total"/>
+			</tree>
+		</field>
+	</record>
+
+    <!-- travel tree-->
+    <record model="ir.ui.view" id="view_travel_tree">
+        <field name="name">hr.travel.management.tree</field>
+        <field name="model">hr.travel.management</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Travel Request">
+				<field name="name" string="Travel Agenda"/>
+                <field name="employee_ids" string="Employee"/>
+                <field name="department_ids" string="Department"/>
+                <field name="job_ids" string="Job"/>
+                <field name="manager_ids" string="Manager"/>
+            </tree>
+        </field>
+    </record>
+     <!-- travel form-->
+    <record model="ir.ui.view" id="view_travel_form">
+        <field name="name">hr.travel.management.form</field>
+        <field name="model">hr.travel.management</field>
+        <field name="arch" type="xml">
+            <form string="Employee Travel Request">
+                <header>
+                    <button name="confirm" states="draft" string="Submit to Manager" type="workflow" class="oe_highlight"/>
+                    <button name="validate" states="confirm" string="Approve" type="workflow" groups="base.group_hr_user" class="oe_highlight"/>
+                    <button name="refuse" states="confirm,accepted" string="Refuse" type="workflow" groups="base.group_hr_user" />
+                    <button name="draft" states="confirm,cancelled" string="Set to Draft" type="workflow" groups="base.group_hr_user" />
+                    <button name="done" states="accepted" string="Generate Accounting Entries" type="workflow" groups="account.group_account_invoice" class="oe_highlight"/>
+                    <button name="action_view_move" states="done" string="Open Accounting Entries" type="object" groups="account.group_account_invoice"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,accepted,done,paid" statusbar_colors='{"confirm":"blue","cancelled":"red"}'/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Travel Agenda"/>
+                        </h1>
+                    </div>
+                    <group>
+						<group>
+							<field name="employee_ids" string="Employee"/>
+							<field name="department_ids" string="Department"/>
+						</group>
+						<group>
+							<field name="job_ids" string="Job"/>
+							<field name="manager_ids" string="Manager"/>
+						</group>
+                    </group>
+                    <group>
+						<group>
+							<field name="user_id" string="Request By"/>
+							<field name="confirm_id" string="Confirm By"/>
+							<field name="approved_id" string="Approved By"/>
+						</group>
+						<group>
+							<field name="request_date" string="Request Date"/>
+							<field name="confirm_date" string="Confirm Date"/>
+							<field name="approved_date" string="Approved Date"/>
+						</group>
+                    </group>
+					<notebook>
+						<page string="Travel Detail" name="travel_detail">
+							<group>
+								<group>
+									<field name="travel_type" string="Travel Type"/>
+									<field name="country_ids" string="Country"/>
+									<field name="state_ids" string="State"/>
+									<field name="city" string="City"/>
+								</group>
+								<group>
+									<field name="departure_date" string="Request Departure Date"/>
+									<field name="return_date" string="Request Return Date"/>
+									<field name="days" string="Days"/>
+									<field name="travel_mode" string="Travel Mode"/>
+								</group>
+							</group>
+						</page>
+                        <page string="Travel Advanced">
+                            <field name="advanced_ids">
+                                <form string="Travel Advanced Lines">
+                                    <group>
+                                        <group>
+                                            <field name="product_id" on_change="onchange_product_id(product_id, context)" context="{'default_hr_expense_ok':1}"/>
+                                            <field name="name"/>
+                                        </group>
+                                        <group>
+                                            <field name="unit_amount"/>
+                                            <label for="unit_quantity"/>
+                                            <div>
+                                                <field name="unit_quantity" class="oe_inline"/> 
+                                                <field name="uom_id" on_change="onchange_uom(product_id, uom_id, context)" class="oe_inline"/>
+                                            </div>
+                                            <field name="date_value" />
+                                        </group>
+                                    </group>
+                                </form>
+                                <tree string="Travel Advanced Lines" editable="bottom">
+                                    <field name="sequence" invisible="1"/>
+                                    <field name="product_id" on_change="onchange_product_id(product_id, context)" context="{'default_hr_expense_ok':1}"/>
+                                    <field name="date_value" string="Advanced Date"/>
+                                    <field name="name"/>
+                                    <field name="uom_id" on_change="onchange_uom(product_id, uom_id, context)"/>
+                                    <field name="unit_amount"/>
+                                    <field name="unit_quantity"/>
+                                    <field name="total_amount" sum="Total"/>
+                                </tree>
+                            </field>
+							<group>
+								<group class="oe_subtotal_footer oe_right">
+									<field name="advanced_amount" widget="monetary" class="oe_subtotal_footer_separator"/>
+								</group>
+							</group>
+                        </page>
+                    </notebook>
+					<group>
+						<div>
+							<separator string="Notes"/>
+							<field name="note" placeholder="Free Notes"/>
+						</div>
+					</group>
+                </sheet>
+            </form>
+      </field>
+    </record>
+    <!-- Menu -->
+    <record model="ir.actions.act_window" id="open_view_travel_form">
+        <field name="name">Employee Travel Request</field>
+        <field name="res_model">hr.travel.management</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Employee Travel Request"
+              parent="menu_travel_request"
+              id="menu_open_view_travel_form"
+              action="open_view_travel_form"/>
+
+  </data>
+</openerp>

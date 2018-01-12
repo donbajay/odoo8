@@ -1,0 +1,42 @@
+<openerp>
+  <data>
+    <!-- golpangkat tree-->
+    <record model="ir.ui.view" id="view_golpangkat_tree">
+        <field name="name">hr.golpangkat.tree</field>
+        <field name="model">hr.golpangkat</field>
+        <field name="arch" type="xml">
+            <tree string="Golongan">
+                <field name="kode_golongan" string="Kode Golongan"/>
+                <field name="golpangkat" string="Golongan"/>
+            </tree>
+        </field>
+    </record>
+     <!-- golpangkat form-->
+    <record model="ir.ui.view" id="view_golpangkat_form">
+        <field name="name">hr.golpangkat.form</field>
+        <field name="model">hr.golpangkat</field>
+        <field name="arch" type="xml">
+            <form string="Golongan">
+                <sheet>
+                    <group name="main">
+						<field name="kode_golongan"/>
+                        <field name="golpangkat"/>
+                    </group>
+                </sheet>
+            </form>
+      </field>
+    </record>
+    <!-- Menu -->
+    <record model="ir.actions.act_window" id="open_view_golpangkat_form">
+        <field name="name">Golongan</field>
+        <field name="res_model">hr.golpangkat</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Golongan"
+              parent="menu_employee_info"
+              id="menu_open_view_golpangkat_form"
+              action="open_view_golpangkat_form"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,46 @@
+<openerp>
+  <data>
+    <!-- jabstruktur tree-->
+    <record model="ir.ui.view" id="view_jabstruktur_tree">
+        <field name="name">hr.jabstruktur.tree</field>
+        <field name="model">hr.jabstruktur</field>
+        <field name="arch" type="xml">
+            <tree string="Jabatan Struktural">
+                <field name="jabstruktur" string="Jabatan Struktural"/>
+                <field name="department_ids" string="Department"/>
+                <field name="struktur" string="Struktur"/>
+                <field name="eselon_ids" string="eselon"/>
+            </tree>
+        </field>
+    </record>
+     <!-- jabstruktur form-->
+    <record model="ir.ui.view" id="view_jabstruktur_form">
+        <field name="name">hr.jabstruktur.form</field>
+        <field name="model">hr.jabstruktur</field>
+        <field name="arch" type="xml">
+            <form string="Jabatan Struktural">
+                <sheet>
+                    <group name="main">
+                        <field name="jabstruktur"/>
+						<field name="department_ids"/>
+						<field name="struktur"/>
+						<field name="eselon_ids"/>
+                    </group>
+                </sheet>
+            </form>
+      </field>
+    </record>
+    <!-- Menu -->
+    <record model="ir.actions.act_window" id="open_view_jabstruktur_form">
+        <field name="name">Jabatan Struktural</field>
+        <field name="res_model">hr.jabstruktur</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Jabatan Struktural"
+              parent="menu_employee_info"
+              id="menu_open_view_jabstruktur_form"
+              action="open_view_jabstruktur_form"/>
+
+  </data>
+</openerp>

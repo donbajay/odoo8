@@ -1,0 +1,42 @@
+<openerp>
+  <data>
+    <!-- jenispeg tree-->
+    <record model="ir.ui.view" id="view_jenispeg_tree">
+        <field name="name">hr.jenispeg.tree</field>
+        <field name="model">hr.jenispeg</field>
+        <field name="arch" type="xml">
+            <tree string="Jenis Pegawai">
+                <field name="kodejenispeg" string="Kode Jenis Pegawai"/>
+                <field name="jenispeg" string="Jenis Pegawai"/>
+            </tree>
+        </field>
+    </record>
+     <!-- jenispeg form-->
+    <record model="ir.ui.view" id="view_jenispeg_form">
+        <field name="name">hr.jenispeg.form</field>
+        <field name="model">hr.jenispeg</field>
+        <field name="arch" type="xml">
+            <form string="Jenis Pegawai">
+                <sheet>
+                    <group name="main">
+                        <field name="kodejenispeg"/>
+						<field name="jenispeg"/>
+                    </group>
+                </sheet>
+            </form>
+      </field>
+    </record>
+    <!-- Menu -->
+    <record model="ir.actions.act_window" id="open_view_jenispeg_form">
+        <field name="name">Jenis Pegawai</field>
+        <field name="res_model">hr.jenispeg</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Jenis Pegawai"
+              parent="menu_employee_info"
+              id="menu_open_view_jenispeg_form"
+              action="open_view_jenispeg_form"/>
+
+  </data>
+</openerp>

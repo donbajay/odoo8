@@ -1,0 +1,6 @@
+<openerp>
+  <data>
+    <menuitem id="menu_employee_info" name="Employee Info" sequence="2" parent="hr.menu_hr_root"/>
+
+  </data>
+</openerp>
